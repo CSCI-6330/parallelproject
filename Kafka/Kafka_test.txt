@@ -1,0 +1,51 @@
+### For testing, we run three different brokers on one EC2 instance
+cd ~/kafka/config
+
+cp kraft/server.properties broker1.properties
+cp kraft/server.properties broker2.properties
+cp kraft/server.properties broker3.properties
+
+
+### We need to modify the configuration of each broker
+broker.id=1
+listeners=PLAINTEXT://0.0.0.0:9092
+log.dirs=/home/ubuntu/kafka/logs/broker1
+
+
+broker.id=2
+listeners=PLAINTEXT://0.0.0.0:9093
+log.dirs=/home/ubuntu/kafka/logs/broker2
+
+
+broker.id=3
+listeners=PLAINTEXT://0.0.0.0:9094
+log.dirs=/home/ubuntu/kafka/logs/broker3
+
+
+mkdir -p ~/kafka/logs/broker1 ~/kafka/logs/broker2 ~/kafka/logs/broker3
+
+### Initialize meta data
+bin/kafka-storage.sh format -t $(bin/kafka-storage.sh random-uuid) -c config/broker1.properties
+bin/kafka-storage.sh format -t $(bin/kafka-storage.sh random-uuid) -c config/broker2.properties
+bin/kafka-storage.sh format -t $(bin/kafka-storage.sh random-uuid) -c config/broker3.properties
+
+
+
+### Start each broker
+# Broker 1
+bin/kafka-server-start.sh -daemon config/broker1.properties
+
+# Broker 2
+bin/kafka-server-start.sh -daemon config/broker2.properties
+
+# Broker 3
+bin/kafka-server-start.sh -daemon config/broker3.
+
+
+### Create Topics
+bin/kafka-topics.sh --create \
+  --topic gudingboge-text \
+  --bootstrap-server localhost:9092,localhost:9093,localhost:9094 \
+  --partitions 9 \
+  --replication-factor 1
+
