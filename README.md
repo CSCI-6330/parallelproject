@@ -19,7 +19,7 @@ positive, negative, and neutral sentiment categories using datasets
 derived from the Gutenberg Project and filtered Twitter streams
 at scales of 1 GB, 10 GB, and 100 GB.
 
-## Data
+## Data Preparation
 ### 1.Usage of `gut_txt.cpp` at test stage
 
 1. **Install Dependencies**
@@ -119,3 +119,9 @@ gs://YOUR_BUCKET/outputs/tfidf/
 
 ### 2. Data used at final stage.
 https://www.kaggle.com/datasets/mateibejan/15000-gutenberg-books
+
+
+## Data Ingestion
+### Kafka streaming 
+See more details in the Kafka folder. Based on the cost, we will decide whether to use Kafka or store the data locally or online directly.
+
