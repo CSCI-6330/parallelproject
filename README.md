@@ -19,7 +19,8 @@ positive, negative, and neutral sentiment categories using datasets
 derived from the Gutenberg Project and filtered Twitter streams
 at scales of 1 GB, 10 GB, and 100 GB.
 
-## How to Use `gut_txt.cpp`
+## Data
+### 1.Usage of `gut_txt.cpp` for test stage
 
 1. **Install Dependencies**
     Make sure you have the following installed:
