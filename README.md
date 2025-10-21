@@ -1,4 +1,4 @@
-# parallelproject
+# Big Data Analytics Term Project
 
 ## Introduction
 This paper presents the design, implementation,
