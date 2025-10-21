@@ -20,7 +20,7 @@ derived from the Gutenberg Project and filtered Twitter streams
 at scales of 1 GB, 10 GB, and 100 GB.
 
 ## Data
-### 1.Usage of `gut_txt.cpp` for test stage
+### 1.Usage of `gut_txt.cpp` at test stage
 
 1. **Install Dependencies**
     Make sure you have the following installed:
@@ -116,3 +116,6 @@ Submit the job and monitor it under **Dataproc → Batches**.
 ```
 gs://YOUR_BUCKET/outputs/tfidf/
 ```
+
+### 2. Data used at final stage.
+https://www.kaggle.com/datasets/mateibejan/15000-gutenberg-books
