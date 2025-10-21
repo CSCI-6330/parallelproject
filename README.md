@@ -1,5 +1,24 @@
 # parallelproject
 
+## Introduction
+This paper presents the design, implementation,
+and evaluation of an end-to-end big data analytics pipeline
+that integrates Apache Kafka, Hadoop Distributed File System
+(HDFS), and Hadoop Streaming with C-based MapReduce,
+benchmarked against PySpark for comparative performance
+analysis. The system is engineered to support real-time data
+ingestion, distributed storage, and large-scale parallel processing
+across heterogeneous cloud environments, specifically Amazon
+Web Services (AWS EMR) and Google Cloud Platform (GCP
+Dataproc). Real-time text data are streamed through Kafka
+producers and consumers, aggregated into HDFS, and processed
+using both disk-based and in-memory computing paradigms.
+Analytical tasks extend beyond traditional word count and TF-
+IDF to include sentiment lexicon analysis, classifying text into
+positive, negative, and neutral sentiment categories using datasets
+derived from the Gutenberg Project and filtered Twitter streams
+at scales of 1 GB, 10 GB, and 100 GB.
+
 ## How to Use `gut_txt.cpp`
 
 1. **Install Dependencies**
