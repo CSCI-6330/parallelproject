@@ -58,7 +58,7 @@ at scales of 1 GB, 10 GB, and 100 GB.
 
 
 
-### Future Optimization Ideas
+#### Future Optimization Ideas
 
 - **Parallel Downloads:** Use a thread pool (each thread with its own `CURL*` handle) or the `libcurl multi` interface to download multiple books simultaneously, improving speed.
 - **Atomic Counters and Graceful Stop:** Use `std::atomic` for `total_bytes` and `file_count` to safely handle concurrency and stop precisely at the target size.
@@ -66,9 +66,9 @@ at scales of 1 GB, 10 GB, and 100 GB.
 
 
 
-## Submit on Dataproc Serverless
+#### Submit on Dataproc Serverless
 
-### 1. Prepare Files
+#### 1. Prepare Files
 
 Upload files to a GCS bucket:
 
@@ -78,7 +78,7 @@ Upload files to a GCS bucket:
 
 ------
 
-### 2. Create a Batch Job
+#### 2. Create a Batch Job
 
 1. Go to **Console → Dataproc → Batches → Create batch**.
 
@@ -97,7 +97,7 @@ Upload files to a GCS bucket:
 
 ------
 
-### 3. Adjust Spark Properties
+#### 3. Adjust Spark Properties
 
 Tune performance by changing:
 
@@ -108,7 +108,7 @@ Tune performance by changing:
 
 ------
 
-### 4. Run and Check Results
+#### 4. Run and Check Results
 
 Submit the job and monitor it under **Dataproc → Batches**.
  Results will be saved to:
