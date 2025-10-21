@@ -1,7 +1,7 @@
 # Big Data Analytics Term Project
 
 ## Introduction
-This paper presents the design, implementation,
+This project presents the design, implementation,
 and evaluation of an end-to-end big data analytics pipeline
 that integrates Apache Kafka, Hadoop Distributed File System
 (HDFS), and Hadoop Streaming with C-based MapReduce,
