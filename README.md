@@ -19,6 +19,59 @@ positive, negative, and neutral sentiment categories using datasets
 derived from the Gutenberg Project and filtered Twitter streams
 at scales of 1 GB, 10 GB, and 100 GB.
 
+## Infrastructure Deployment (Terraform on AWS)
+
+This section describes how to provision the **AWS EMR (Elastic MapReduce)** cluster used for large-scale data processing in this project.
+Terraform is employed to automate the creation of the EMR cluster, IAM roles, and S3 bucket for log storage and input/output management.
+
+### Steps to Run
+
+1. **Configure AWS CLI**
+
+   ```bash
+   aws configure
+   ```
+
+   Provide your AWS Access Key, Secret Key, and set:
+
+   ```
+   Default region: us-east-1
+   Output format: json
+   ```
+
+2. **Initialize Terraform**
+
+   ```bash
+   terraform init
+   ```
+
+3. **Deploy Infrastructure**
+
+   ```bash
+   terraform apply
+   ```
+
+   Type `yes` when prompted.
+   After successful deployment, Terraform will output your EMR cluster ID and master public DNS.
+
+4. **Verify Cluster**
+
+   * Visit the [AWS EMR Console](https://console.aws.amazon.com/emr/home?region=us-east-1)
+   * Ensure the cluster state is `WAITING` or `RUNNING`.
+
+5. **Clean Up Resources**
+   When analysis is complete, remove all infrastructure to avoid charges:
+
+   ```bash
+   terraform destroy
+   ```
+
+All EMR logs and job outputs are stored automatically in your specified S3 bucket (e.g., `s3://kafka-bucket-2025/emr-logs/`).
+This setup enables seamless execution of Hadoop and Spark workloads for the data processing and sentiment-analysis components of the project.
+
+
+
+
 ## Data Preparation
 ### 1.Usage of `gut_txt.cpp` at test stage
 
