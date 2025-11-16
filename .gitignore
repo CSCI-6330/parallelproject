@@ -2,7 +2,9 @@
 
 # Prerequisites
 *.d
-
+.vscode/
+/gut_data/
+gut_txt
 # Compiled Object files
 *.slo
 *.lo
