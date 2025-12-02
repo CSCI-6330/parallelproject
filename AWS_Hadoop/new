@@ -1,1 +1,15 @@
-····Prepare workspace
+```1. Prepare workspace
+
+mkdir ~/tfidf
+cd ~/tfidf
+
+```2. Build All Binaries
+
+gcc -O2 -std=c11 job1_mapper.c -o job1_mapper
+gcc -O2 -std=c11 job1_reducer.c -o job1_reducer
+
+gcc -O2 -std=c11 job2_mapper.c -o job2_mapper
+gcc -O2 -std=c11 job2_reducer.c -o job2_reducer
+
+gcc -O2 -std=c11 job3_mapper.c -o job3_mapper
+gcc -O2 -std=c11 job3_reducer.c -o job3_reducer
