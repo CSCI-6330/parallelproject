@@ -178,3 +178,6 @@ https://www.kaggle.com/datasets/mateibejan/15000-gutenberg-books
 ### Kafka streaming 
 See more details in the Kafka folder. Based on the cost, we will decide whether to use Kafka or store the data locally or online directly.
 
+## Implementation
+Please refer to the corresponding folder for detailed information on each experiment.
+
