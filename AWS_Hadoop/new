@@ -1,15 +1,53 @@
-```1. Prepare workspace
+1. Prepare workspace
 
 mkdir ~/tfidf
 cd ~/tfidf
 
-```2. Build All Binaries
+2. Build All Binaries
 
 gcc -O2 -std=c11 job1_mapper.c -o job1_mapper
 gcc -O2 -std=c11 job1_reducer.c -o job1_reducer
-
 gcc -O2 -std=c11 job2_mapper.c -o job2_mapper
 gcc -O2 -std=c11 job2_reducer.c -o job2_reducer
-
 gcc -O2 -std=c11 job3_mapper.c -o job3_mapper
 gcc -O2 -std=c11 job3_reducer.c -o job3_reducer
+
+
+3. Job1 — Compute Term Frequency (TF)
+
+hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar \
+  -D mapreduce.job.name="TFIDF_Job1_TF" \
+  -files job1_mapper,job1_reducer \
+  -mapper job1_mapper \
+  -reducer job1_reducer \
+  -input s3://your-bucket/path/ \
+  -output s3://your-bucket/tfidf/output/tf
+
+4. Job2 — Compute Document Frequency (DF)
+
+hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar \
+  -D mapreduce.job.name="TFIDF_Job2_DF" \
+  -files job2_mapper,job2_reducer \
+  -mapper job2_mapper \
+  -reducer job2_reducer \
+  -input s3://your-bucket/tfidf/output/tf \
+  -output s3://your-bucket/tfidf/output/df_raw
+
+5. Merge DF Files into df.txt
+
+hadoop fs -getmerge s3://your-bucket/tfidf/output/df_raw df.txt
+aws s3 cp df.txt s3://your-bucket/tfidf/aux/df.txt
+
+6. Job3 — Compute Final TF-IDF
+
+aws s3 cp s3://your-bucket/tfidf/aux/df.txt ./df.txt
+aws s3 cp s3://your-bucket/tfidf/aux/N.txt ./N.txt
+
+hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar \
+  -D mapreduce.job.name="TFIDF_Job3_TFIDF" \
+  -files job3_mapper,job3_reducer,df.txt#df.txt,N.txt#N.txt \
+  -mapper job3_mapper \
+  -reducer job3_reducer \
+  -input s3://your-bucket/tfidf/output/tf \
+  -output s3://your-bucket/tfidf/output/tfidf
+
